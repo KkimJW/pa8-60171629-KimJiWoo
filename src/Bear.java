@@ -1,11 +1,13 @@
-//60171629 ±èÁö¿ì
-public class Bear implements Drawable { //DrawableÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ´Â BearÅ¬·¡½º
-	double centerx; //Bear·Î ±×·ÁÁö´Â RectangleÀÇ Áß½ÉÁ¡ÀÇ xÁÂÇ¥
-	double centery; //Bear·Î ±×·ÁÁö´Â RectangleÀÇ Áß½ÉÁ¡ÀÇ yÁÂÇ¥
-	double diameter; //<±×¸²1>ÀÇ radius*2
+import java.util.ArrayList;
+
+//60171629 ê¹€ì§€ìš°
+public class Bear implements Drawable { //Drawableì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ëŠ” Bearí´ë˜ìŠ¤
+	double centerx; //Bearë¡œ ê·¸ë ¤ì§€ëŠ” Rectangleì˜ ì¤‘ì‹¬ì ì˜ xì¢Œí‘œ
+	double centery; //Bearë¡œ ê·¸ë ¤ì§€ëŠ” Rectangleì˜ ì¤‘ì‹¬ì ì˜ yì¢Œí‘œ
+	double diameter; //<ê·¸ë¦¼1>ì˜ radius*2
 	String name = "Bear";
 	
-	//Å¬·¡½º ÀüÃ¼¿¡¼­ centerx, centery, diameter°¡ Bear(double centerx, double diameter)ÀÇ centerx, centery, diameter°¡ µÇµµ·Ï ¼³Á¤
+	//í´ë˜ìŠ¤ ì „ì²´ì—ì„œ centerx, centery, diameterê°€ Bear(double centerx, double diameter)ì˜ centerx, centery, diameterê°€ ë˜ë„ë¡ ì„¤ì •
 	Bear (double centerx, double centery, double diameter){
 		this.centerx = centerx;
 		this.centery = centery;
@@ -14,16 +16,24 @@ public class Bear implements Drawable { //DrawableÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ´Â BearÅ¬·¡
 	
 	@Override
 	public void draw() {
+		//ì—¬ëŸ¬ê°œì˜ Drawableì„ ê°€ì§ˆ ë¦¬ìŠ¤íŠ¸ ìƒì„±
+		ArrayList<Shape> bearlist = new ArrayList<Shape>();
+		
 		System.out.println(name);
-		//¿©·¯°³ÀÇ DrawableÀ» °¡Áö´Â drawablesbear »ı¼º
+		
+		//ì—¬ëŸ¬ê°œì˜ Drawable ìƒì„±
 		Drawable[] drawablesbear = new Drawable[3];
 		drawablesbear[0] = new Rectangle(centerx-diameter, centery-diameter, diameter*2, diameter*2);
 		drawablesbear[1] = new Circle(centerx-diameter, centery-diameter, diameter/2);
 		drawablesbear[2] = new Circle(centerx+diameter, centery-diameter, diameter/2);
 		
-		//drawablesbearÀÇ ¸ğµç draw¸Ş¼Òµå ½ÇÇà
-		for(Drawable d: drawablesbear) {
-			d.draw();
+		for (int i = 0; i < drawablesbear.length; i++) {
+			bearlist.add((Shape) drawablesbear[i]);
+		}
+		
+		//bearlistì˜ ëª¨ë“  í•­ëª©ì— ëŒ€í•´ drawë©”ì†Œë“œ ì‹¤í–‰
+		for (Shape s:bearlist) {
+			s.draw();
 		}
 	}
 }
